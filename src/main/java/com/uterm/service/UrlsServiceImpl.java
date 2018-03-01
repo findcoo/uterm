@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 /**
  * UrlsService
  */
-@Service
-public class UrlsServiceImpl implements CrudService<Urls, Long>, UrlsService {
+@Service("urlsService")
+public class UrlsServiceImpl implements UrlsService {
 
     @Autowired
     private UrlsRepository urlsRepository;
 
-    public Urls get(Long id) {
+    public Urls get(long id) {
         return urlsRepository.findOne(id);
     }
 
@@ -27,5 +27,9 @@ public class UrlsServiceImpl implements CrudService<Urls, Long>, UrlsService {
 
     public List<Urls> listByDomain(String domain) {
         return urlsRepository.findByDomain(domain);
+    }
+
+    public Urls getHashedUrl(String hashedUrl) {
+        return urlsRepository.findByHashedUrl(hashedUrl);
     }
 }

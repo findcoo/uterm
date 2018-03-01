@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UrlsRepository extends CrudRepository<Urls, Long> {
 
-    List<Urls> findByDomain(String Domain);
+    List<Urls> findByDomain(String domain);
+    Urls findByHashedUrl(String hashedUrl);
 }
     

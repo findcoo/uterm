@@ -19,17 +19,19 @@ public class Urls {
     @GeneratedValue
     private Long id;
     private String domain;
-    private String urlB62;
     @Column(unique=true)
     private String hashedUrl;
+    private String url;
     @CreatedDate
     private LocalDateTime CreatedAt;
     @LastModifiedDate
     private LocalDateTime ModifiedAt;
 
-    private Urls(String domain, String urlB62, String hashedUrl) {
+    protected Urls() {}
+
+    public Urls(String url, String domain, String hashedUrl) {
         this.domain = domain;
-        this.urlB62 = urlB62;
+        this.url = url;
         this.hashedUrl = hashedUrl;
     }
 }
