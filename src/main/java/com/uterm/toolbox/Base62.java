@@ -17,26 +17,26 @@ public class Base62 {
     }
 
     public static String encode(long num) {
-        String encoded = "";
+        String encodedText = "";
 
         do {
             int remainder = (int)(num % 62);
-            encoded += BASE62_CODE[remainder];
+            encodedText += BASE62_CODE[remainder];
             num /= 62;
         } while (num > 0);
-        return encoded;
+        return encodedText;
     }
 
     public static long decode(String code) {
-        long decoded = 0;
+        long decodedNumber = 0;
         long pow = 1;
 
         for (int i=0; i<code.length(); i++) {
             int digit = BASE62_INDEX.get(code.charAt(i));
-            decoded += digit * pow;
+            decodedNumber += digit * pow;
             pow *= 62;
         }
 
-        return decoded;
+        return decodedNumber;
     }
 }
