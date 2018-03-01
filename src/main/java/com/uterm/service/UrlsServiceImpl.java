@@ -3,6 +3,7 @@ package com.uterm.service;
 import java.util.List;
 
 import com.uterm.domain.Urls;
+import com.uterm.domain.UrlsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.uterm.service;
+package com.uterm.domain;
 
 import java.util.List;
 

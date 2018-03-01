@@ -1,6 +1,7 @@
 # uterm
-URL 간결화 서비스
-특정 URL(예: https://mail.google.com/mail/u/0/#inbox/1618abef65f)을 짧은 형태의 URL(예: https://localhost.com/aSDdasd9)로 변환하고
+**URL 간결화 서비스**
+
+특정 URL(예: https://mail.google.com/mail/u/0/#inbox/1618abef65f)을 짧은 형태의 URL(예: https://localhost.com/aSDdasd9) 로 변환하고
 변환된 URL을 통해 원래 URL을 참조할 수 있게합니다. 이 프로젝트는 **8자 내로 간결화한다는 제약 조건**이 있습니다. 
 
 ## 어떻게 줄일 것인가?
