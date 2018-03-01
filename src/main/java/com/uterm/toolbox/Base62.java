@@ -16,18 +16,18 @@ public class Base62 {
         }
     }
 
-    public static String encode(Long num) {
+    public static String encode(long num) {
         String encoded = "";
 
-        while (num > 0) {
+        do {
             int remainder = (int)(num % 62);
             encoded += BASE62_CODE[remainder];
             num /= 62;
-        }
+        } while (num > 0);
         return encoded;
     }
 
-    public static Long decode(String code) {
+    public static long decode(String code) {
         long decoded = 0;
         long pow = 1;
 
