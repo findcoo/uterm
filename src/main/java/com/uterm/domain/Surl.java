@@ -4,16 +4,19 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Data
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Surl {
     @Id
@@ -33,6 +36,7 @@ public class Surl {
     private String url;
 
     @CreatedDate
+    @Column(updatable=false)
     private LocalDateTime CreatedAt;
 
     @LastModifiedDate

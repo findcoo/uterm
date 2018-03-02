@@ -32,3 +32,4 @@
 * `TestEntityManager`
 
     주로 테스트 데이터 저장에 사용된다.
+* `@DataJpaTest` 환경에서는 Auditing 설정을 로드하지 않음으로 Auditing관련 테스트는 서비스 혹은 컨트롤러에서 수행한다.

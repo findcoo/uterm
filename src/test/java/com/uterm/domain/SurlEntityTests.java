@@ -1,6 +1,7 @@
 package com.uterm.domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.validation.ConstraintViolationException;
 
@@ -74,5 +75,4 @@ public class SurlEntityTests {
         Surl surl = this.entityManger.persistFlushFind(new Surl("https://test.com/hell", "test.com", "test"));
         assertEquals(surl.getDomain(), "test.com");
     }
-    
 }
