@@ -19,3 +19,16 @@
 * base62 알고리즘 설계
 * **TODO** 8문자 제한.
 * **TODO** 서비스의 가용성 확보를 위해서는 중복된 URL 등록을 막아야한다.
+
+## 개발 참조
+### JPA Test
+가상의 데이터베이스를 구축하여 테스트 환경을 구성하는것이 목적이다.
+
+* `@DataJpaTest`
+    1. H2 데이터베이스를 구성한다.
+    2. hibernate, spring data 와 DataSource를 설정한다.
+    3. `@EntityScan`을 시행한다.
+    4. SQL 로깅을 시작한다.
+* `TestEntityManager`
+
+    주로 테스트 데이터 저장에 사용된다.

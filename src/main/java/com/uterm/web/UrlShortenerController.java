@@ -1,7 +1,7 @@
 package com.uterm.web;
 
-import com.uterm.domain.Urls;
-import com.uterm.service.UrlsService;
+import com.uterm.domain.Surl;
+import com.uterm.service.SurlService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * UrlShortenerController
+ * SurlhortenerController
  */
 @RestController
-@RequestMapping("/urls")
+@RequestMapping("/Surl")
 public class UrlShortenerController {
 
     @Autowired
-    UrlsService urlsService;
+    SurlService SurlService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void create(@RequestBody Urls input) {
-        urlsService.add(input);
+    public void create(@RequestBody Surl input) {
+        SurlService.add(input);
     }
 }
