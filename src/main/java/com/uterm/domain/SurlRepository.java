@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface SurlRepository extends CrudRepository<Surl, Long> {
 
     List<Surl> findByDomain(String domain);
+
     Surl findByHashedUrl(String hashedUrl);
 }
     

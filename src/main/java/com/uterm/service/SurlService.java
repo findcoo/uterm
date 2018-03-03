@@ -11,7 +11,9 @@ public interface SurlService {
 
     public Surl get(long id);
 
-    public Surl add(Surl Surl);
+    public Surl add(Surl surl);
+    
+    public void delete(long id);
 
     public List<Surl> listByDomain(String domain);
 
