@@ -48,7 +48,7 @@ public class UrlShortenerController {
     @ExceptionHandler({ MalformedURLException.class, ConstraintViolationException.class})
     public void badRequest() {}
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{surlId}")
+    @RequestMapping(value = "/surl/{surlId}", method = RequestMethod.GET)
     public Surl get(@PathVariable long surlId) {
         return surlService.get(surlId);
     }
@@ -67,13 +67,22 @@ public class UrlShortenerController {
         return respMap;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{surlId}")
+    @RequestMapping(value = "/surl/{surlId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long surlId) {
         surlService.delete(surlId);
     }
+
 
     public static String getHashedUrl(String url) {
         md.update(url.getBytes()); 
         return Base64.getEncoder().encodeToString(md.digest());
     }
+
+    @RequestMapping("/{encodedURL}")
+	public String redirect(@PathVariable String encodedURL) {
+		Long id = Base62.decode(encodedURL);	
+		Surl surl = surlService.get(id);
+		
+		return "redirect" + surl.getUrl();
+	}
 }
