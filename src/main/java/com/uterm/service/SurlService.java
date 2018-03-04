@@ -9,11 +9,11 @@ import com.uterm.domain.Surl;
  */
 public interface SurlService {
 
-    public Surl get(long id);
+    public Surl get(Long id);
 
     public Surl add(Surl surl);
     
-    public void delete(long id);
+    public void delete(Long id);
 
     public List<Surl> listByDomain(String domain);
 

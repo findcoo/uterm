@@ -20,25 +20,25 @@ public class SurlServiceImpl implements SurlService {
     @Autowired
     private SurlRepository surlRepository;
 
-    public Surl get(long id) {
-        return surlRepository.findOne(id);
+    public Surl get(Long id) {
+        return this.surlRepository.findOne(id);
     }
 
     public Surl add(Surl surl) {
-        Surl existsSurl = surlRepository.findByHashedUrl(surl.getHashedUrl());
+        Surl existsSurl = this.surlRepository.findByHashedUrl(surl.getHashedUrl());
 
-        return (existsSurl != null) ? existsSurl : surlRepository.save(surl);
+        return (existsSurl != null) ? existsSurl : this.surlRepository.save(surl);
     }
 
-    public void delete(long id) {
-        surlRepository.delete(id);
+    public void delete(Long id) {
+        this.surlRepository.delete(id);
     }
 
     public List<Surl> listByDomain(String domain) {
-        return surlRepository.findByDomain(domain);
+        return this.surlRepository.findByDomain(domain);
     }
 
     public Surl getHashedUrl(String hashedUrl) {
-        return surlRepository.findByHashedUrl(hashedUrl);
+        return this.surlRepository.findByHashedUrl(hashedUrl);
     }
 }

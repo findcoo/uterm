@@ -42,15 +42,15 @@ public class UrlShortenerController {
     }
 
     @Autowired
-    SurlService surlService;
+    private SurlService surlService;
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason="check the request input")
     @ExceptionHandler({ MalformedURLException.class, ConstraintViolationException.class})
     public void badRequest() {}
 
-    @RequestMapping(value = "/surl/{surlId}", method = RequestMethod.GET)
-    public Surl get(@PathVariable long surlId) {
-        return surlService.get(surlId);
+    @RequestMapping(value = "/{surlId}", method = RequestMethod.GET)
+    public Surl get(@PathVariable Long surlId) {
+        return this.surlService.get(surlId);
     }
 
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT })
@@ -61,28 +61,19 @@ public class UrlShortenerController {
         input.setHashedUrl(getHashedUrl(urlText));
         input.setDomain(url.getHost().replaceFirst("www.", ""));
 
-        Surl addedSurl = surlService.add(input);
+        Surl addedSurl = this.surlService.add(input);
         HashMap<String, String> respMap = new HashMap<String, String>();
         respMap.put("surl", "http://localhost/" + Base62.encode(addedSurl.getId()));
         return respMap;
     }
 
-    @RequestMapping(value = "/surl/{surlId}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable long surlId) {
-        surlService.delete(surlId);
+    @RequestMapping(value = "/{surlId}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long surlId) {
+        this.surlService.delete(surlId);
     }
-
 
     public static String getHashedUrl(String url) {
         md.update(url.getBytes()); 
         return Base64.getEncoder().encodeToString(md.digest());
     }
-
-    @RequestMapping("/{encodedURL}")
-	public String redirect(@PathVariable String encodedURL) {
-		Long id = Base62.decode(encodedURL);	
-		Surl surl = surlService.get(id);
-		
-		return "redirect" + surl.getUrl();
-	}
 }

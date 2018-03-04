@@ -39,17 +39,17 @@ public class SurlServiceTests {
     @Test
     public void add() {
         Surl surl = new Surl("https://test.com", "test.com", "hello");
-        given(repository.findByHashedUrl("hello")).willReturn(surl);
+        given(this.repository.findByHashedUrl("hello")).willReturn(surl);
 
-        assertThat(service.add(surl).getDomain()).isEqualTo("test.com");
+        assertThat(this.service.add(surl).getDomain()).isEqualTo("test.com");
     }
 
     @Test
     public void get() {
-        given(repository.findOne((long)1))
+        given(this.repository.findOne(1L))
             .willReturn(new Surl("a", "b", "c"));
 
-        assertThat(service.get(1).getUrl())
+        assertThat(this.service.get(1L).getUrl())
             .isEqualTo("a");
     }
 }
