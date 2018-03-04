@@ -10,3 +10,8 @@ spring:
 uterm:
   domain:
     name: "localhost"
+
+server:
+  error:
+    whitelabel:
+      enabled: true

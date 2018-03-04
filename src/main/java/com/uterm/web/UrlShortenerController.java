@@ -14,6 +14,7 @@ import com.uterm.toolbox.Base62;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,8 +52,11 @@ public class UrlShortenerController {
     public void badRequest() {}
 
     @RequestMapping(value = "/{surlId}", method = RequestMethod.GET)
-    public Surl get(@PathVariable Long surlId) {
-        return this.surlService.get(surlId);
+    public ResponseEntity<Surl> get(@PathVariable Long surlId) {
+        Surl surl = this.surlService.get(surlId);
+        ResponseEntity<Surl> resp = new ResponseEntity<Surl>(surl, 
+            (surl != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return resp;
     }
 
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT })
