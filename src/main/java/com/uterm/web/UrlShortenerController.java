@@ -7,13 +7,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
 
-import javax.validation.ConstraintViolationException;
-
 import com.uterm.domain.Surl;
 import com.uterm.service.SurlService;
 import com.uterm.toolbox.Base62;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UrlShortenerController {
 
     private static final MessageDigest md;
-    
+
     static {
         try {
             md = MessageDigest.getInstance("SHA-256");
@@ -41,11 +40,14 @@ public class UrlShortenerController {
         }
     }
 
+    @Value("${uterm.domain.name}")
+    private String utermDomain;
+
     @Autowired
     private SurlService surlService;
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason="check the request input")
-    @ExceptionHandler({ MalformedURLException.class, ConstraintViolationException.class})
+    @ExceptionHandler({ MalformedURLException.class })
     public void badRequest() {}
 
     @RequestMapping(value = "/{surlId}", method = RequestMethod.GET)
@@ -63,7 +65,7 @@ public class UrlShortenerController {
 
         Surl addedSurl = this.surlService.add(input);
         HashMap<String, String> respMap = new HashMap<String, String>();
-        respMap.put("surl", "http://localhost/" + Base62.encode(addedSurl.getId()));
+        respMap.put("surl", String.format("http://%s/%s", utermDomain, Base62.encode(addedSurl.getId())));
         return respMap;
     }
 

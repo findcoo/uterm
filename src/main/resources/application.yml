@@ -6,3 +6,7 @@ spring:
     url: jdbc:mysql://localhost:3306/uterm
     username: utermadmin
     password: admin1234
+
+uterm:
+  domain:
+    name: "localhost"
