@@ -1,9 +1,10 @@
 package com.uterm.web;
 
+import static com.uterm.web.UrlShortenerController.getHashedUrl;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.mockito.BDDMockito.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,13 +20,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.uterm.web.UrlShortenerController.getHashedUrl;
-
 /**
  * UrlShortenerController
  */
 @RunWith(SpringRunner.class)
-@WebMvcTest(UrlShortenerController.class)
+@WebMvcTest
 public class UrlShortenerControllerTests {
 
     @Autowired

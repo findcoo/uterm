@@ -1,5 +1,9 @@
 package com.uterm.web;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import com.uterm.domain.Surl;
 import com.uterm.service.SurlService;
 import com.uterm.toolbox.Base62;
@@ -21,11 +25,11 @@ public class RedirectController {
     private SurlService surlService;
 
     @RequestMapping(value = "/{surlCode}", method = RequestMethod.GET)
-    public String redirect(@PathVariable String surlCode) {
+    public void redirect(@PathVariable String surlCode, HttpServletResponse httpResponse) throws IOException {
         Long id = Base62.decode(surlCode);
         Surl surl = this.surlService.get(id);
 
-        return "redirect:" + surl.getUrl();
+        httpResponse.sendRedirect(surl.getUrl());
     }
     
 }
