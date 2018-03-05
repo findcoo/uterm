@@ -30,9 +30,11 @@ test {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-devtools')
 	compile('mysql:mysql-connector-java')
 	compile('com.h2database:h2')
 	compile('org.projectlombok:lombok')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

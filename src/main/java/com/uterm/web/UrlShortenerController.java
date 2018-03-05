@@ -34,10 +34,6 @@ public class UrlShortenerController {
     @Autowired
     private SurlService surlService;
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason="check the request input")
-    @ExceptionHandler({ MalformedURLException.class })
-    public void badRequest() {}
-
     @RequestMapping(value = "/{surlId}", method = RequestMethod.GET)
     public ResponseEntity<Surl> get(@PathVariable Long surlId) {
         Surl surl = this.surlService.get(surlId);

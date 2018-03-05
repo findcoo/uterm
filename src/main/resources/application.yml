@@ -6,6 +6,11 @@ spring:
     url: jdbc:mysql://localhost:3306/uterm
     username: utermadmin
     password: admin1234
+  devtools:
+    livereload:
+      enalbes: true
+  freemarker:
+    cache: false
 
 uterm:
   domain:
@@ -14,4 +19,4 @@ uterm:
 server:
   error:
     whitelabel:
-      enabled: true
+      enabled: false;
