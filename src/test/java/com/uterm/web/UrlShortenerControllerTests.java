@@ -1,6 +1,6 @@
 package com.uterm.web;
 
-import static com.uterm.web.UrlShortenerController.getHashedUrl;
+import static com.uterm.toolbox.HashFunction.digestWithSHA256;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -35,7 +35,7 @@ public class UrlShortenerControllerTests {
 
     @Test
     public void createSurl() throws Exception {
-        Surl surl = new Surl("http://test.com", "test.com", getHashedUrl("http://test.com"));
+        Surl surl = new Surl("http://test.com", "test.com", digestWithSHA256(new String[]{"http://test.com"}));
         surl.setId(1L);
         given(this.service.add(surl)).willReturn(surl);
 

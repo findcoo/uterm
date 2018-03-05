@@ -1,15 +1,12 @@
 package com.uterm.web;
 
+import static com.uterm.toolbox.HashFunction.digestWithSHA256;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.HashMap;
 
 import com.uterm.domain.Surl;
 import com.uterm.service.SurlService;
-import com.uterm.toolbox.Base62;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,16 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/surl")
 public class UrlShortenerController {
 
-    private static final MessageDigest md;
-
-    static {
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException();
-        }
-    }
-
     @Value("${uterm.domain.name}")
     private String utermDomain;
 
@@ -60,26 +47,18 @@ public class UrlShortenerController {
     }
 
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT })
-    public HashMap<String, String> create(@RequestBody Surl input) throws MalformedURLException {
+    public Surl create(@RequestBody Surl input) throws MalformedURLException {
         URL url = new URL(input.getUrl());
         String urlText = url.toString();
 
-        input.setHashedUrl(getHashedUrl(urlText));
+        input.setHashedUrl(digestWithSHA256(new String[]{urlText}));
         input.setDomain(url.getHost().replaceFirst("www.", ""));
 
-        Surl addedSurl = this.surlService.add(input);
-        HashMap<String, String> respMap = new HashMap<String, String>();
-        respMap.put("surl", String.format("http://%s/%s", utermDomain, Base62.encode(addedSurl.getId())));
-        return respMap;
+        return this.surlService.add(input);
     }
 
     @RequestMapping(value = "/{surlId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long surlId) {
         this.surlService.delete(surlId);
-    }
-
-    public static String getHashedUrl(String url) {
-        md.update(url.getBytes()); 
-        return Base64.getEncoder().encodeToString(md.digest());
     }
 }

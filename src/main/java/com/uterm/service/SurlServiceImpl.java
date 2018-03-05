@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
  * SurlService
  */
 @Service("surlService")
-@Transactional
 public class SurlServiceImpl implements SurlService {
 
     @Autowired
@@ -24,12 +23,14 @@ public class SurlServiceImpl implements SurlService {
         return this.surlRepository.findOne(id);
     }
 
+    @Transactional
     public Surl add(Surl surl) {
         Surl existsSurl = this.surlRepository.findByHashedUrl(surl.getHashedUrl());
 
         return (existsSurl != null) ? existsSurl : this.surlRepository.save(surl);
     }
 
+    @Transactional
     public void delete(Long id) {
         this.surlRepository.delete(id);
     }
