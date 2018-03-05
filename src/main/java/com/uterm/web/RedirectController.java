@@ -41,6 +41,7 @@ public class RedirectController {
 
         HttpHeaders respHeader = new HttpHeaders();
         respHeader.setLocation(url.toURI());
+        respHeader.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, max-age=0, must-revalidate");
         ResponseEntity<Void> resp = new ResponseEntity<>(respHeader, HttpStatus.MOVED_PERMANENTLY);
         return resp;
     }

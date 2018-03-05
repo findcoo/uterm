@@ -2,20 +2,18 @@ package com.uterm.web;
 
 import static com.uterm.toolbox.HashFunction.digestWithSHA256;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.net.MalformedURLException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uterm.domain.Surl;
 import com.uterm.service.SurlService;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -36,9 +34,6 @@ public class UrlShortenerControllerTests {
 
     @MockBean
     private SurlService service;
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void createSurl() throws Exception {
@@ -70,7 +65,6 @@ public class UrlShortenerControllerTests {
         surl.setId(1L);
         given(this.service.add(surl)).willReturn(surl);
 
-        thrown.expect(MalformedURLException.class);
         this.mvc.perform(
             post("/surl")
                 .contentType(MediaType.APPLICATION_JSON)
