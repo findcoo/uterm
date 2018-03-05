@@ -17,10 +17,10 @@
 ## History
 * spring boot + data jpa(mysql)를 이용한 rest api 서버 어플리케이션 환경 구축.
 * base62 알고리즘 설계.
-* **TODO** 8문자 제한.
 * 서비스의 가용성 확보를 위해서는 중복된 URL 막도록 SHA-256 함수를 이용한 해쉬 검증.
 * **TODO** 테스트 데이터베이스 환경 구축.
 * **TODO** sha256의 충돌 대비하기 위하여 url, hashedUrl을 unique index로 구성하는 방안을 생각해보기.
+* **TODO** 삭제 혹은 여타 다른 이유로 공백이 되는 id값을 다시 채우기 위해 참조 빈도수를 이용한 공간 할당 알고리즘이 필요하게됨.
 
 ## 개발참조
 * [Testing](doc/TESTING.md)

@@ -1,7 +1,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   datasource:
     url: jdbc:mysql://localhost:3306/uterm
     username: utermadmin
@@ -14,7 +14,7 @@ spring:
 
 uterm:
   domain:
-    name: "localhost"
+    name: "localhost:8999"
 
 server:
   port: 8999
