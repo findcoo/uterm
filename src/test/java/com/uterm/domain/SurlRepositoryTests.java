@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -25,7 +24,6 @@ public class SurlRepositoryTests {
     private SurlRepository repository;
     
     @Test
-    @Transactional
     public void saveReturnWithId() {
         Surl surl = this.repository.save(new Surl("a", "b", "c"));
 
@@ -33,18 +31,8 @@ public class SurlRepositoryTests {
     }
 
     @Test
-    @Transactional
-    public void findById() {
-        this.entityManager.persistAndFlush(new Surl("https://test.com", "test.com", "test"));
-        Surl surl = this.repository.findOne(1L);
-
-        assertThat(surl.getUrl()).isEqualTo("https://test.com");
-    }
-
-    @Test
-    @Transactional
     public void findByHashedUrl() {
-        this.entityManager.persistAndFlush(new Surl("https://test.com", "test.com", "hello"));
+        this.entityManager.persist(new Surl("https://test.com", "test.com", "hello"));
         Surl surl = this.repository.findByHashedUrl("hello");
 
         assertThat(surl.getUrl()).isEqualTo("https://test.com");

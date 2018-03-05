@@ -17,6 +17,7 @@ uterm:
     name: "localhost"
 
 server:
+  port: 8999
   error:
     whitelabel:
       enabled: false;
