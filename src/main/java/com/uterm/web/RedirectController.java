@@ -34,7 +34,7 @@ public class RedirectController {
         if (surlCode.length() > 8) throw new BadReqeustException();
 
         Long id = Base62.decode(surlCode);
-        Surl surl = this.surlService.get(id);
+        Surl surl = this.surlService.get(id + 1);
         if (surl == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         URL url = new URL(surl.getUrl());

@@ -59,7 +59,7 @@ public class UrlShortenerController {
         input.setDomain(url.getHost().replaceFirst("www.", ""));
         
         Surl surl = this.surlService.add(input);
-        return String.format("{\"shortedURL\": \"http://%s/%s\"}", utermDomain, Base62.encode(surl.getId()));
+        return String.format("{\"shortedURL\": \"http://%s/%s\"}", utermDomain, Base62.encode(surl.getId() - 1));
     }
 
     @RequestMapping(value = "/{surlId}", method = RequestMethod.DELETE)
