@@ -34,6 +34,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('mysql:mysql-connector-java')
 	compile('com.h2database:h2')
+	compile('org.hibernate:hibernate-core')
+	compile('org.hibernate:hibernate-entitymanager')
 	compile('org.projectlombok:lombok')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')

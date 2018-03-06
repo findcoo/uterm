@@ -3,7 +3,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/uterm
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/uterm}
     username: utermadmin
     password: admin1234
   devtools:
@@ -14,10 +14,10 @@ spring:
 
 uterm:
   domain:
-    name: "localhost:8999"
+    name: ${UTERM_DOMAIN:localhost:8999}
 
 server:
-  port: 8999
+  port: ${SERVER_PORT:8999}
   error:
     whitelabel:
       enabled: false;
