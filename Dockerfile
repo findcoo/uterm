@@ -10,4 +10,4 @@ RUN gradle clean build
 RUN chown -R gradle:gradle ./
 USER gradle
 EXPOSE 80 443 8080 8443 8999
-CMD ["java", "-jar", "build/libs/uterm-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "build/libs/uterm.jar"]

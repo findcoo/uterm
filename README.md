@@ -26,8 +26,8 @@
     ```shell
     yarn install # or npm install 
     yarn build # or npm build
-    gradle clean build
-    java -jar build/libs/uterm-0.0.1-SNAPSHOT.jar
+    gradle clean build # or ./gradlew clean build
+    java -jar build/libs/uterm.jar
     ```
 * docker-compose를 이용한 방법
 
