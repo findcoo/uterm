@@ -26,7 +26,7 @@ public class APIErrorHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(ResponseEntityExceptionHandler.class);
 
-    @ExceptionHandler(BadReqeustException.class)
+    @ExceptionHandler({ BadReqeustException.class, ConstraintViolationException.class })
     public ResponseEntity<Object> badRequest(RuntimeException e, WebRequest request) {
         log.error(e.getMessage(), e);
         return handleExceptionInternal(e, "check the request input", 
