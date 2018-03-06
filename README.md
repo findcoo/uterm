@@ -21,6 +21,7 @@
     * ^npm 5.6.0 or ^yarn 1.3.2
 ### 빌드 및 실행
 * 일반적인 방법
+
     사전에 mysql을 설정해야 합니다. 설정 정보는 [application.yml](src/main/resources/application.yml)을 확인해주세요.
     ```shell
     yarn install # or npm install 
@@ -34,6 +35,7 @@
     컨테이너가 안정화되어 실행 될 때까지 기다려주세요.
 
 * 개발 환경
+
     서버 환경은 `gradle bootRun` 웹 UI 환경은 `yarn start` 명령으로 개발환경을 실행 할 수 있습니다.<br/>
     미리 mysql 환경 설정이 필요합니다.
 ## History
