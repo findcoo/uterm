@@ -31,7 +31,7 @@ public class RedirectControllerTests {
 
     @Test
     public void redirect() throws Exception {
-        given(this.service.get(0L)).willReturn(new Surl("http://google.com", "google.com", "")); 
+        given(this.service.get(1L)).willReturn(new Surl("http://google.com", "google.com", "")); 
 
         this.mvc.perform(get("/a"))
             .andExpect(status().is3xxRedirection());
@@ -39,7 +39,7 @@ public class RedirectControllerTests {
 
     @Test
     public void redirectToUnkownPath() throws Exception {
-        given(this.service.get(0L)).willReturn(new Surl("http://dhfldfladf.com", "", "")); 
+        given(this.service.get(1L)).willReturn(new Surl("http://dhfldfladf.com", "", "")); 
 
         this.mvc.perform(get("/a"))
             .andExpect(status().is3xxRedirection());
